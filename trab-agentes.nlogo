@@ -8,7 +8,8 @@ to setup
 end
 
 to go
-  setup-room
+  move-cleaners
+  tick
 end
 
 to setup-room
@@ -25,16 +26,51 @@ to setup-agents
     set color green
     set heading 90
     set shape "car"
-    set size 2
   ]
 
-  create-dirts 15
+  create-dirts random 15
   [
-    setxy random-xcor random-ycor
+    setxy int(random-xcor) int(random-ycor)
     set color red
     set heading 90
     set shape "dot"
-    set size 2
+    set size 1.5
+  ]
+end
+
+to move-cleaners
+  let num random 4
+end
+
+to cleaner-forward
+  ask cleaners
+  [
+    forward 1
+  ]
+end
+
+to cleaner-backward
+  ask cleaners
+  [
+    back 1
+  ]
+end
+
+to cleaner-right
+  ask cleaners
+  [
+    right 90
+    forward 1
+    left 90
+  ]
+end
+
+to cleaner-left
+  ask cleaners
+  [
+    left 90
+    forward 1
+    right 90
   ]
 end
 @#$#@#$#@
@@ -89,12 +125,80 @@ BUTTON
 83
 NIL
 go
-NIL
+T
 1
 T
 OBSERVER
 NIL
 NIL
+NIL
+NIL
+1
+
+BUTTON
+929
+329
+1030
+362
+forward
+cleaner-forward
+NIL
+1
+T
+OBSERVER
+NIL
+W
+NIL
+NIL
+1
+
+BUTTON
+929
+364
+1030
+397
+backward
+cleaner-backward
+NIL
+1
+T
+OBSERVER
+NIL
+S
+NIL
+NIL
+1
+
+BUTTON
+1033
+364
+1134
+397
+right
+cleaner-right
+NIL
+1
+T
+OBSERVER
+NIL
+D
+NIL
+NIL
+1
+
+BUTTON
+827
+365
+927
+398
+left
+cleaner-left
+NIL
+1
+T
+OBSERVER
+NIL
+A
 NIL
 NIL
 1
