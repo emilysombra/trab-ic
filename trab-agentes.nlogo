@@ -5,6 +5,7 @@ to setup
   clear-all
   setup-room
   setup-agents
+  reset-ticks
 end
 
 to go
@@ -28,7 +29,7 @@ to setup-agents
     set shape "car"
   ]
 
-  create-dirts random 15
+  create-dirts random 100
   [
     setxy int(random-xcor) int(random-ycor)
     set color red
@@ -40,6 +41,19 @@ end
 
 to move-cleaners
   let num random 4
+  if(num = 0)[
+    cleaner-forward
+  ]
+  if(num = 1)[
+    cleaner-backward
+  ]
+  if(num = 2)[
+    cleaner-right
+  ]
+  if(num = 3)[
+    cleaner-left
+  ]
+  ask dirts with [count turtles-here > 1] [ die ]
 end
 
 to cleaner-forward
