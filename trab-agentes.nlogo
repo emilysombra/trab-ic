@@ -1,6 +1,8 @@
 breed [cleaners cleaner]
 breed [dirts dirt]
 
+cleaners-own [points]
+
 to setup
   clear-all
   setup-room
