@@ -29,6 +29,7 @@ to setup-agents
     set color green
     set heading 90
     set shape "car"
+    set points 0
   ]
 
   create-dirts random 100
@@ -55,6 +56,7 @@ to move-cleaners
   if(num = 3)[
     cleaner-left
   ]
+  ask cleaners with [count turtles-here > 1] [ set points (points + 1) ]
   ask dirts with [count turtles-here > 1] [ die ]
 end
 
@@ -151,73 +153,27 @@ NIL
 NIL
 1
 
-BUTTON
-929
-329
-1030
-362
-forward
-cleaner-forward
-NIL
+MONITOR
+831
+23
+963
+68
+Locais Limpos
+[points] of cleaner 0
+2
 1
-T
-OBSERVER
-NIL
-W
-NIL
-NIL
-1
+11
 
-BUTTON
-929
-364
-1030
-397
-backward
-cleaner-backward
-NIL
+MONITOR
+831
+69
+963
+114
+Sujeiras Restantes
+count dirts
+2
 1
-T
-OBSERVER
-NIL
-S
-NIL
-NIL
-1
-
-BUTTON
-1033
-364
-1134
-397
-right
-cleaner-right
-NIL
-1
-T
-OBSERVER
-NIL
-D
-NIL
-NIL
-1
-
-BUTTON
-827
-365
-927
-398
-left
-cleaner-left
-NIL
-1
-T
-OBSERVER
-NIL
-A
-NIL
-NIL
-1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
