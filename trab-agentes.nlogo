@@ -11,7 +11,13 @@ to setup
 end
 
 to go
-  move-cleaners
+  if(inteligencia)[
+    smart-move-cleaners
+  ]
+  if(not inteligencia)[
+    move-cleaners
+  ]
+  clean-dirt
   tick
 end
 
@@ -42,6 +48,48 @@ to setup-agents
   ]
 end
 
+to clean-dirt
+  ask cleaners with [count turtles-here > 1] [ set points (points + 1) ]
+  ask dirts with [count turtles-here > 1] [ die ]
+end
+
+to smart-move-cleaners
+  ask cleaners [
+    if(distance min-one-of dirts [distance myself]) <= 5 [
+      face min-one-of dirts [distance myself]
+      cleaner-forward
+    ]
+
+    if(distance min-one-of dirts [distance myself]) > 5 [
+      let num random 4
+      if(num = 0)[
+        cleaner-forward
+        cleaner-forward
+        cleaner-forward
+      ]
+      if(num = 1)[
+        cleaner-backward
+        cleaner-backward
+        cleaner-backward
+      ]
+      if(num = 2)[
+        cleaner-right
+        cleaner-right
+        cleaner-right
+      ]
+      if(num = 3)[
+        cleaner-left
+        cleaner-left
+        cleaner-left
+      ]
+    ]
+  ]
+
+  ask cleaners [
+    set heading 90
+  ]
+end
+
 to move-cleaners
   let num random 4
   if(num = 0)[
@@ -56,8 +104,6 @@ to move-cleaners
   if(num = 3)[
     cleaner-left
   ]
-  ask cleaners with [count turtles-here > 1] [ set points (points + 1) ]
-  ask dirts with [count turtles-here > 1] [ die ]
 end
 
 to cleaner-forward
@@ -174,6 +220,35 @@ count dirts
 2
 1
 11
+
+SWITCH
+831
+118
+964
+151
+inteligencia
+inteligencia
+1
+1
+-1000
+
+PLOT
+1036
+25
+1309
+226
+Eficiência
+ticks
+limpos por tick
+0.0
+10.0
+0.0
+1.0
+true
+false
+"" ""
+PENS
+"pontos" 1.0 0 -16777216 true "" "plot ([points] of cleaner 0) / (ticks + 1)"
 
 @#$#@#$#@
 ## WHAT IS IT?
