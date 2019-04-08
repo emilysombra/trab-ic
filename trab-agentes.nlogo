@@ -235,15 +235,15 @@ inteligencia
 PLOT
 1036
 25
-1309
-226
+1776
+441
 Eficiência
 ticks
 limpos por tick
 0.0
 10.0
 0.0
-1.0
+0.4
 true
 false
 "" ""
